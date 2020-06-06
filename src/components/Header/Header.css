@@ -1,0 +1,21 @@
+.header--container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+}
+
+.header--title {
+  font-size: 1em;
+  font-weight: 800;
+  vertical-align: middle;
+}
+
+.header--dark-mode {
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.dark-mode--logo {
+  display: inline-block;
+  padding-right: 1rem;
+}
