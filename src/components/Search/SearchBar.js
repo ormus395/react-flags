@@ -1,20 +1,20 @@
 import React from "react";
-import Filter from "./Filter";
 
-function SearchBar(props) {
-  return (
-    <div className="container">
+class SearchBar extends React.Component {
+  render() {
+    return (
       <form className="search-bar">
-        <span className="search-bar--logo"></span>
+        <span className="search-bar--logo">
+          <i class="fas fa-search"></i>
+        </span>
         <input
           className="search-bar--input"
           type="text"
           placeholder="Search for a country..."
         />
-        <Filter />
       </form>
-    </div>
-  );
+    );
+  }
 }
 
 export default SearchBar;

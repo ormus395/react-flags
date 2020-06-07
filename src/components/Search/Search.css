@@ -1,0 +1,51 @@
+.search {
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.search-bar {
+  box-shadow: 2px 2px 4px hsl(0, 0%, 92%), -2px -2px 4px hsl(0, 0%, 92%);
+}
+
+.search-bar .search-bar--input {
+  border-style: none;
+  padding: 1rem;
+  margin-left: 0.5rem;
+  width: 80%;
+}
+
+.search-bar--logo {
+  display: inline-block;
+  padding-left: 1rem;
+}
+
+.filter {
+  margin-top: 2rem;
+}
+
+.filter--title {
+  display: flex;
+  box-shadow: 2px 2px 4px hsl(0, 0%, 92%), -2px -2px 4px hsl(0, 0%, 92%);
+  justify-content: space-between;
+  padding: 1rem;
+  width: 60%;
+}
+
+.filter--title:hover {
+  cursor: pointer;
+}
+
+.filter--drop-down {
+  margin-top: 0.5rem;
+  box-shadow: 2px 2px 4px hsl(0, 0%, 92%), -2px -2px 4px hsl(0, 0%, 92%);
+  width: 60%;
+}
+
+.filter--drop-down li {
+  padding: 0.5rem 1rem;
+}
+
+.filter--drop-down li:hover {
+  background-color: hsl(0, 0%, 92%);
+  cursor: pointer;
+}
