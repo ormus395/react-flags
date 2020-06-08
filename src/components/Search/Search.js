@@ -7,32 +7,21 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: true,
+      filterBy: "default",
     };
 
-    this.toggle = this.toggle.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
-  toggle() {
-    let { hidden } = this.state;
-
-    if (hidden) {
-      this.setState({ hidden: false });
-    } else {
-      this.setState({ hidden: true });
-    }
-  }
-
-  handleToggle() {
-    this.toggle();
+  handleFilter(option) {
+    this.setState({ filterBy: option });
   }
 
   render() {
     return (
       <div className="search">
         <SearchBar />
-        <Filter />
+        <Filter filterBy={this.handleFilter} />
       </div>
     );
   }

@@ -8,7 +8,7 @@ function Header(props) {
         <h3 className="header--title">Where in the world?</h3>
         <p className="header--dark-mode">
           <span className="dark-mode--logo">
-            <i class="far fa-moon"></i>
+            <i className="far fa-moon"></i>
           </span>
           Dark Mode
         </p>
