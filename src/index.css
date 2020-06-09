@@ -39,6 +39,10 @@ input[type="text"]:focus {
   border-style: none;
 }
 
+#root {
+  background-color: hsl(0, 0%, 98%);
+}
+
 .container {
   padding: 1rem 2rem;
 }
@@ -48,4 +52,8 @@ input[type="text"]:focus {
 
 .shadow-bottom {
   box-shadow: 0 2px 4px hsl(0, 0%, 92%);
+}
+
+.white {
+  background-color: hsl(0, 0%, 100%);
 }

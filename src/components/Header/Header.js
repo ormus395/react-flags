@@ -3,7 +3,7 @@ import "./Header.css";
 
 function Header(props) {
   return (
-    <header className="shadow-bottom">
+    <header className="shadow-bottom white">
       <div className="header--container">
         <h3 className="header--title">Where in the world?</h3>
         <p className="header--dark-mode">

@@ -49,7 +49,7 @@ class Filter extends React.Component {
 
     return (
       <div className="filter">
-        <p className="filter--title" onClick={this.toggle}>
+        <p className="filter--title white" onClick={this.toggle}>
           Filter by Region{" "}
           <span className="filter--logo">
             <i className="fas fa-chevron-down"></i>

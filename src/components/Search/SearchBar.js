@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form className="search-bar" onSubmit={this.handleSubmit}>
+      <form className="search-bar white" onSubmit={this.handleSubmit}>
         <span className="search-bar--logo">
           <i className="fas fa-search"></i>
         </span>

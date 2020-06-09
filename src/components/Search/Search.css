@@ -21,6 +21,7 @@
 
 .filter {
   margin-top: 2rem;
+  position: relative;
 }
 
 .filter--title {
@@ -36,8 +37,9 @@
 }
 
 .filter--drop-down {
+  background-color: hsl(0, 0%, 100%);
   margin-top: 0.5rem;
-  box-shadow: 2px 2px 4px hsl(0, 0%, 92%), -2px -2px 4px hsl(0, 0%, 92%);
+  position: absolute;
   width: 60%;
 }
 
