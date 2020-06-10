@@ -10,8 +10,12 @@ class CountryList extends React.Component {
       error: null,
       isLoaded: false,
       countries: [],
-      tenCountries: [],
+      countryView: [],
+      region: "Oceania",
+      searchBy: "",
     };
+
+    this.filterByRegion = this.filterByRegion.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +30,7 @@ class CountryList extends React.Component {
         }
       )
       .then((jsonResponse) => {
-        let newState = this.state;
+        let newState = Object.create(this.state);
         newState.countries = jsonResponse.map((country) => {
           return {
             capital: country.capital,
@@ -37,14 +41,35 @@ class CountryList extends React.Component {
           };
         });
         newState.isLoaded = true;
+        newState.countryView = this.filterByRegion(
+          newState.region,
+          newState.countries
+        );
         this.setState(newState);
       });
+  }
+
+  filterByRegion(region, countries) {
+    let filteredCountries = [];
+    if (countries.length > 0) {
+      if (region !== "Default") {
+        filteredCountries = countries.filter((country) => {
+          return country.region === region;
+        });
+      } else {
+        filteredCountries = countries;
+      }
+    } else {
+      alert("Waiting for countries to load");
+    }
+
+    return filteredCountries;
   }
 
   render() {
     // need name, population, region and capital, and flag url
     let { isLoaded } = this.state;
-    let countryViewList = this.state.countries.map((country) => {
+    let countryViewList = this.state.countryView.map((country) => {
       return (
         <CountryCard
           info={{

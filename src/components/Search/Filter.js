@@ -9,7 +9,7 @@ class Filter extends React.Component {
       filterOptions: [
         "Africa",
         "Asia",
-        "America",
+        "Americas",
         "Oceania",
         "Europe",
         "Default",
