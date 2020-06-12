@@ -21,7 +21,10 @@ class Search extends React.Component {
     return (
       <div className="search">
         <SearchBar />
-        <Filter filterBy={this.handleFilter} />
+        <Filter
+          filterBy={this.handleFilter}
+          handleFilterChange={this.props.handleFilterChange}
+        />
       </div>
     );
   }

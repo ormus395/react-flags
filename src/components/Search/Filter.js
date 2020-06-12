@@ -35,13 +35,13 @@ class Filter extends React.Component {
   }
 
   handleSortChange(sortBy) {
-    this.props.filterBy(sortBy);
+    this.props.handleFilterChange(sortBy);
   }
 
   render() {
     let options = this.state.filterOptions.sort().map((option) => {
       return (
-        <li value={option} key={option}>
+        <li value={option} key={option} onClick={this.toggle}>
           {option}
         </li>
       );
