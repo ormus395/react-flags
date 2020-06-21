@@ -1,9 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import "./App.css";
 
 import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
 import CountryList from "./components/CountryList/CountryList";
+import CountryPage from "./components/CountryPage/CountryPage";
 
 class App extends React.Component {
   constructor(props) {
@@ -18,9 +21,11 @@ class App extends React.Component {
     };
     this.filterByRegion = this.filterByRegion.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.filterBySearchTerm = this.filterBySearchTerm.bind(this);
   }
 
   componentDidMount() {
+    console.log("Fetching all countries");
     let endpoint = "https://restcountries.eu/rest/v2/all";
     fetch(endpoint)
       .then(
@@ -40,6 +45,7 @@ class App extends React.Component {
             flag: country.flag,
             region: country.region,
             population: country.population,
+            alphaCode: country.alpha3Code,
           };
         });
         newState.isLoaded = true;
@@ -81,20 +87,53 @@ class App extends React.Component {
     return filteredCountries;
   }
 
-  handleSearchChange(event) {}
+  filterBySearchTerm(term) {
+    this.setState((state, props) => {
+      let newState = state;
 
-  filterBySearchTerm(term) {}
+      newState.countryView = newState.countries.filter((country) => {
+        if (state.region !== "Default") {
+          if (
+            country.name.includes(term) &&
+            country.region === newState.region
+          ) {
+            return true;
+          }
+        } else {
+          if (country.name.includes(term)) {
+            return true;
+          }
+        }
+
+        return false;
+      });
+
+      return newState;
+    });
+  }
 
   render() {
     return (
-      <section className="App">
+      <Router>
         <Header />
-        <Search handleFilterChange={this.handleFilterChange} />
-        <CountryList
-          countries={this.state.countryView}
-          loaded={this.state.isLoaded}
-        />
-      </section>
+        <Switch>
+          <Route path="/country/:alphaCode">
+            <CountryPage />
+          </Route>
+          <Route path="/">
+            <section className="App">
+              <Search
+                handleFilterChange={this.handleFilterChange}
+                filterBySearchTerm={this.filterBySearchTerm}
+              />
+              <CountryList
+                countries={this.state.countryView}
+                loaded={this.state.isLoaded}
+              />
+            </section>
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }

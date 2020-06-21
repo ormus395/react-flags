@@ -13,6 +13,7 @@ function CountryList(props) {
           population: country.population,
           region: country.region,
           capital: country.capital,
+          alphaCode: country.alphaCode,
         }}
         flag={country.flag}
         name={country.name}

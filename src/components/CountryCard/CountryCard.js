@@ -1,4 +1,6 @@
 import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
+
 import "./CountryCard.css";
 
 function CountryCard(props) {
@@ -13,11 +15,13 @@ function CountryCard(props) {
 
   return (
     <article className="country-card white">
-      <section>
-        <img src={props.flag} alt="" />
-      </section>
-      <p className="country-name">{props.name}</p>
-      <ul className="country-info">{attributes}</ul>
+      <Link to={`/country/${props.info.alphaCode}`}>
+        <section>
+          <img src={props.flag} alt="" />
+        </section>
+        <p className="country-name">{props.name}</p>
+        <ul className="country-info">{attributes}</ul>
+      </Link>
     </article>
   );
 }

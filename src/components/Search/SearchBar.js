@@ -7,21 +7,16 @@ class SearchBar extends React.Component {
       inputValue: "",
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ inputValue: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    alert(this.state.inputValue);
+    console.log(event.target.value);
+    this.props.filterBySearchTerm(event.target.value);
   }
 
   render() {
     return (
-      <form className="search-bar white" onSubmit={this.handleSubmit}>
+      <form className="search-bar white">
         <span className="search-bar--logo">
           <i className="fas fa-search"></i>
         </span>
