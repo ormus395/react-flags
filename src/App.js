@@ -16,7 +16,7 @@ class App extends React.Component {
       isLoaded: false,
       countries: [],
       countryView: [],
-      region: "Oceania",
+      region: "Default",
       searchBy: "",
     };
     this.filterByRegion = this.filterByRegion.bind(this);
