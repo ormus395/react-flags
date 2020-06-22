@@ -39,14 +39,7 @@ class App extends React.Component {
       .then((jsonResponse) => {
         let newState = Object.create(this.state);
         newState.countries = jsonResponse.map((country) => {
-          return {
-            capital: country.capital,
-            name: country.name,
-            flag: country.flag,
-            region: country.region,
-            population: country.population,
-            alphaCode: country.alpha3Code,
-          };
+          return country;
         });
         newState.isLoaded = true;
         newState.countryView = this.filterByRegion(

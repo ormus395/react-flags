@@ -15,7 +15,7 @@ function CountryCard(props) {
 
   return (
     <article className="country-card white">
-      <Link to={`/country/${props.info.alphaCode}`}>
+      <Link to={`/country/${props.alphaCode}`}>
         <section>
           <img src={props.flag} alt="" />
         </section>

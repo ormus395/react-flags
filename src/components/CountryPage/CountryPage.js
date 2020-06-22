@@ -1,38 +1,62 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 function CountryPage() {
-  console.log("I have to ppop");
-  const { alphaCode } = useParams();
-  console.log(alphaCode);
-  const [country, setCountry] = useState({});
-  const [aCode, setACode] = useState(alphaCode);
+  let { alphaCode } = useParams();
+  let [country, setCountry] = useState({});
+  let [aCode, setACode] = useState(alphaCode);
+  let [borders, setBorders] = useState([]);
+  let [isLoaded, setLoaded] = useState(false);
+
   let history = useHistory();
 
   // need to load country by url when loaded
   // need country
   useEffect(() => {
-    console.log("am I even calling");
     fetch("https://restcountries.eu/rest/v2/alpha/" + aCode)
       .then((response) => response.json())
       .then((jsonResponse) => {
-        console.log("I am being called");
-        return setCountry(jsonResponse);
+        if (jsonResponse.borders.length > 0) {
+          let b = [];
+          async function fetchBorders() {
+            console.log("Fetching border countrie");
+            for (let border of jsonResponse.borders) {
+              let response = await fetch(
+                "https://restcountries.eu/rest/v2/alpha/" + border
+              );
+              let jsonResponse = await response.json();
+              console.log(jsonResponse);
+              b.push({
+                name: jsonResponse.name,
+                alphaCode: jsonResponse.alpha3Code,
+              });
+            }
+          }
+
+          fetchBorders();
+          console.log(b);
+          setBorders(b);
+          setCountry(jsonResponse);
+        } else {
+          setCountry(jsonResponse);
+        }
       });
   }, [aCode]);
 
   function handleClick(bCountry) {
-    history.push(`/country/${bCountry}`);
     setACode(bCountry);
+    history.push(`/country/${bCountry}`);
   }
 
   let languages = "";
   let borderCountries = [];
 
   if (Object.keys(country).length > 0) {
+    console.log("Render");
+    console.log(borders);
     languages =
       country.languages.length > 0
         ? country.languages
@@ -43,12 +67,18 @@ function CountryPage() {
             .join(", ")
         : "";
     borderCountries =
-      country.borders.length > 0
-        ? country.borders.map((bCountry) => (
-            <button key={bCountry} onClick={() => handleClick(bCountry)}>
-              {bCountry}
-            </button>
-          ))
+      borders.length > 0
+        ? borders.map((bCountry) => {
+            console.log("fuck this");
+            return (
+              <button
+                key={bCountry.alphaCode}
+                onClick={() => handleClick(bCountry.alphaCode)}
+              >
+                {bCountry.name}
+              </button>
+            );
+          })
         : "";
   }
 
@@ -56,14 +86,8 @@ function CountryPage() {
     <>
       {Object.keys(country).length > 0 ? (
         <article>
-          <button
-            onClick={() => {
-              history.goBack();
-              console.log(history.location.pathname);
-              setACode(aCode);
-            }}
-          >
-            Back
+          <button>
+            <Link to="/">Back</Link>
           </button>
           <div>
             <img src={country.flag} alt="" />

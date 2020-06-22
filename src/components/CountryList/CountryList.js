@@ -9,14 +9,15 @@ function CountryList(props) {
   let countryViewList = props.countries.map((country) => {
     return (
       <CountryCard
+        key={country.alpha3Code}
         info={{
           population: country.population,
           region: country.region,
           capital: country.capital,
-          alphaCode: country.alphaCode,
         }}
         flag={country.flag}
         name={country.name}
+        alphaCode={country.alpha3Code}
       />
     );
   });
